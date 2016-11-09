@@ -14,6 +14,10 @@ var loadState = {
         
         // Load a new asset that we will use in the menu state
         game.load.image('imgMenu', 'assets/menu.png');
+		game.load.image('titulo_juego', 'assets/titulo_juego.png');
+		game.load.spritesheet('jugar_sprite_sheet', 'assets/botones/jugar_sprite_sheet.png', 287, 48);
+		game.load.spritesheet('reglas_sprite_sheet', 'assets/botones/reglas_sprite_sheet.png', 287, 46);
+		game.load.spritesheet('creditos_sprite_sheet', 'assets/botones/creditos_sprite_sheet.png', 286, 46);
 
         // Sounds
     },

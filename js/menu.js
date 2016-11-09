@@ -2,26 +2,16 @@ var menuState = {
     
     create: function() {
         // Add a background image
-        game.add.image(0, 0, 'imgMenu');
-        
+        imgMenu = game.add.image(0, 0, 'imgMenu');
+        imgMenu.scale.setTo(0.8, 1);
+		
         // Display the name of the game
-        var nameLabel = game.add.text(game.world.centerX, 80, 'Heroes Of Soccer',{ font: '50px Arial', fill: '#ffffff' });
-        nameLabel.anchor.setTo(0.5, 0.5);
+        titulo_juego = game.add.image(game.world.centerX - 560, 80, 'titulo_juego');
+		titulo_juego.scale.setTo(0.7, 1);
         
-        // Show the score at the center of the screen
-        var scoreLabel = game.add.text(game.world.centerX, game.world.centerY,
-                                       'score: ' + game.global.score,{ font: '25px Arial', fill: '#ffffff' });
-        scoreLabel.anchor.setTo(0.5, 0.5);
-        
-        // Explain how to start the game
-        var startLabel = game.add.text(game.world.centerX, game.world.height-80,
-                                       'press the up arrow key to start',{ font: '25px Arial', fill: '#ffffff' });
-        startLabel.anchor.setTo(0.5, 0.5);
-        
-        // Create a new Phaser keyboard variable: the up arrow key
-        var upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
-        // When the 'upKey' is pressed, it will call the 'start' function once
-        upKey.onDown.addOnce(this.start, this);
+        button_jugar = game.add.button(game.world.centerX - 125, 300, 'jugar_sprite_sheet', mostrar_creditos, this, 2, 1, 0);
+		button_reglas = game.add.button(game.world.centerX - 125, 375, 'reglas_sprite_sheet', mostrar_creditos, this, 2, 1, 0);
+		button_creditos = game.add.button(game.world.centerX - 125, 450, 'creditos_sprite_sheet', mostrar_creditos, this, 2, 1, 0);
     },
     
     start: function() {
@@ -29,3 +19,9 @@ var menuState = {
         game.state.start('play');
     }
 };
+
+function mostrar_creditos () {
+
+    
+
+}
