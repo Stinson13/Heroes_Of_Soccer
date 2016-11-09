@@ -1,27 +1,31 @@
 var menuState = {
     
     create: function() {
+		game.stage.backgroundColor = 'black';
+		
         // Add a background image
         imgMenu = game.add.image(0, 0, 'imgMenu');
-        imgMenu.scale.setTo(0.8, 1);
+        imgMenu.scale.setTo(0.6, 0.5);
 		
         // Display the name of the game
-        titulo_juego = game.add.image(game.world.centerX - 560, 80, 'titulo_juego');
-		titulo_juego.scale.setTo(0.7, 1);
+        tituloJuego = game.add.image(100, 50, 'titulo_juego');
+		tituloJuego.scale.setTo(0.6, 1);
         
-        button_jugar = game.add.button(game.world.centerX - 125, 300, 'jugar_sprite_sheet', mostrar_creditos, this, 2, 1, 0);
-		button_reglas = game.add.button(game.world.centerX - 125, 375, 'reglas_sprite_sheet', mostrar_creditos, this, 2, 1, 0);
-		button_creditos = game.add.button(game.world.centerX - 125, 450, 'creditos_sprite_sheet', mostrar_creditos, this, 2, 1, 0);
-    },
-    
-    start: function() {
-        // Start the actual game
-        game.state.start('play');
+// buttons: https://dabuttonfactory.com/
+        buttonJugar = game.add.button(425, 325, 'jugar_sprite_sheet', jugar, this, 2, 1, 0);
+		buttonReglas = game.add.button(425, 400, 'reglas_sprite_sheet', mostrarReglas, this, 2, 1, 0);
+		buttonCreditos = game.add.button(425, 475, 'creditos_sprite_sheet', mostrarCreditos, this, 2, 1, 0);
     }
 };
 
-function mostrar_creditos () {
+function jugar () {
+	game.state.start('play');
+}
 
-    
+function mostrarReglas () {
+	game.state.start('reglas');
+}
 
+function mostrarCreditos () {
+	game.state.start('creditos');
 }

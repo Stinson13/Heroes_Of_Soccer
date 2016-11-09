@@ -13,11 +13,21 @@ var loadState = {
         // Load all out assets
         
         // Load a new asset that we will use in the menu state
+// Spritesheet: https://www.leshylabs.com/apps/sstool/
+// Gimp: escalado de las imagenes
         game.load.image('imgMenu', 'assets/menu.png');
 		game.load.image('titulo_juego', 'assets/titulo_juego.png');
+		game.load.image('campoFutbol', 'assets/campo_futbol.jpg');
+		
+		// Logos
+		game.load.image('logoAMA', 'assets/logos/AMA.png');
+		game.load.spritesheet('twitter_sprite_sheet', 'assets/logos/twitter_sprite_sheet.png', 50, 51);
+		
+		// Botones
 		game.load.spritesheet('jugar_sprite_sheet', 'assets/botones/jugar_sprite_sheet.png', 287, 48);
 		game.load.spritesheet('reglas_sprite_sheet', 'assets/botones/reglas_sprite_sheet.png', 287, 46);
 		game.load.spritesheet('creditos_sprite_sheet', 'assets/botones/creditos_sprite_sheet.png', 286, 46);
+		game.load.spritesheet('volver_sprite_sheet', 'assets/botones/volver_sprite_sheet.png', 287, 48);
 
         // Sounds
     },
