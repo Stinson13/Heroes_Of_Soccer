@@ -18,6 +18,8 @@ var loadState = {
         game.load.image('imgMenu', 'assets/menu.png');
 		game.load.image('titulo_juego', 'assets/titulo_juego.png');
 		game.load.image('campoFutbol', 'assets/campo_futbol.jpg');
+        game.load.image('imgTablero', 'assets/tablero.jpg');
+        game.load.image('imgFondoTablero', 'assets/grada_ini.jpg');
 		
 		// Logos
 		game.load.image('logoAMA', 'assets/logos/AMA.png');
@@ -28,6 +30,11 @@ var loadState = {
 		game.load.spritesheet('reglas_sprite_sheet', 'assets/botones/reglas_sprite_sheet.png', 287, 46);
 		game.load.spritesheet('creditos_sprite_sheet', 'assets/botones/creditos_sprite_sheet.png', 286, 46);
 		game.load.spritesheet('volver_sprite_sheet', 'assets/botones/volver_sprite_sheet.png', 287, 48);
+        
+        //Cartas
+        game.load.image('imgDorso', 'assets/dorso_carta_1.png');
+        game.load.image('imgZidane', 'assets/real_madrid/Zidane_C.png');
+        game.load.image('imgCholo', 'assets/atletico/Simeone_C.png');
 
         // Sounds
     },
