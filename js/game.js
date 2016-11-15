@@ -3,7 +3,8 @@ var game = new Phaser.Game(window.innerWidth - 20, window.innerHeight - 20, Phas
 
 // Define our 'global' variable
 game.global = {
-    score: 0
+    score: 0,
+    ASSETS: 'assets/'
 };
 
 
