@@ -18,8 +18,8 @@ var loadState = {
         game.load.image('imgMenu', game.global.ASSETS + 'menu.png');
 		game.load.image('titulo_juego', game.global.ASSETS + 'titulo_juego.png');
 		game.load.image('campoFutbol', game.global.ASSETS + 'campo_futbol.jpg');
-        game.load.image('imgTablero', game.global.ASSETS + 'tablero.jpg');
-        game.load.image('imgFondoTablero', game.global.ASSETS + 'grada_ini.jpg');
+        //game.load.image('imgTablero', game.global.ASSETS + 'tablero.jpg');
+        //game.load.image('imgFondoTablero', game.global.ASSETS + 'grada_ini.jpg');
 		
 		// Logos
 		game.load.image('logoAMA', game.global.ASSETS + 'logos/AMA.png');
@@ -32,18 +32,23 @@ var loadState = {
 		game.load.spritesheet('volver_sprite_sheet', game.global.ASSETS + 'botones/volver_sprite_sheet.png', 287, 48);
         
         //Cartas
-        /*game.load.image('imgDorso', game.global.ASSETS + 'dorso_carta_1.png');
-        game.load.image('imgZidane', game.global.ASSETS + 'real_madrid/Zidane_C.png');
-        game.load.image('imgCholo', game.global.ASSETS + 'atletico/Simeone_C.png');*/
-        
         var i, j;
-        for (i = 0; i < equipos.length; i++) {
-            for (j = 0; j < real_madrid.length; j++) {
-                game.load.image(real_madrid[i], game.global.ASSETS + carpetas_equipos[i] + '/' + real_madrid[j] + '.png');
-                // Split nombre jugador para obtener nombre, ataque, posicion
-                new Jugador();
+        var index;
+		
+        // Jugadores
+        for (i = 0, index = 0; i < equipos.length; i++) {
+            for (j = 0; j < jugadores[equipos[i]].length; j++, index++) {
+				var str = jugadores[equipos[i]][j].split("_");
+                game.global.jugadores[index] = new cartaJugador(str[0], equipos[i], str[1], str[2]);
+                game.load.image(jugadores[equipos[i]][j], game.global.ASSETS + equipos[i] + '/' + jugadores[equipos[i]][j] + '.png');
             }   
         }
+
+        // Entrenadores
+        for (i = 0, index = 0; i < entrenadores.length; i++, index++) {
+            game.global.entrenadores[index] = new cartaEntrenador(entrenadores[i], equipos[i]);
+            game.load.image(jugadores[equipos[i]][j], game.global.ASSETS + equipos[i] + '/' + entrenadores[i] + '.png');
+        }   
 
         // Sounds
     },
