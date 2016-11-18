@@ -37,17 +37,17 @@ var loadState = {
 		
         // Jugadores
         for (i = 0, index = 0; i < equipos.length; i++) {
-            for (j = 0; j < jugadores[equipos[i]].length; j++, index++) {
-				var str = jugadores[equipos[i]][j].split("_");
-                game.global.jugadores[index] = new cartaJugador(str[0], equipos[i], str[1], str[2]);
-                game.load.image(jugadores[equipos[i]][j], game.global.ASSETS + equipos[i] + '/' + jugadores[equipos[i]][j] + '.png');
+            for (j = 0; j < jugadores[i].length; j++, index++) {
+				var str = jugadores[i][j].split("_");
+                game.global.jugadores[index] = new cartaJugador(str[0], equipos[i], str[1], str[2], jugadores[i][j]);
+                game.load.image(jugadores[i][j], game.global.ASSETS + equipos[i] + '/' + jugadores[i][j] + '.png');
             }   
         }
 
         // Entrenadores
         for (i = 0, index = 0; i < entrenadores.length; i++, index++) {
             game.global.entrenadores[index] = new cartaEntrenador(entrenadores[i], equipos[i]);
-            game.load.image(jugadores[equipos[i]][j], game.global.ASSETS + equipos[i] + '/' + entrenadores[i] + '.png');
+            game.load.image(jugadores[i][j], game.global.ASSETS + equipos[i] + '/' + entrenadores[i] + '.png');
         }   
 
         // Sounds

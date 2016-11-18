@@ -15,6 +15,7 @@ var menuState = {
         buttonJugar = game.add.button(425, 325, 'jugar_sprite_sheet', goToPlay, this, 2, 1, 0);
 		buttonReglas = game.add.button(425, 400, 'reglas_sprite_sheet', mostrarReglas, this, 2, 1, 0);
 		buttonCreditos = game.add.button(425, 475, 'creditos_sprite_sheet', mostrarCreditos, this, 2, 1, 0);
+        
     }
 };
 

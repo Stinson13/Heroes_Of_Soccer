@@ -4,20 +4,20 @@ function Jugador() {
 
 	var rand = Math.floor((Math.random() * equipos.length));
 	this.entrenador = game.global.entrenadores[rand];
+    this.mazo = new Array (this.maxCartasMazo);
 
 	var i;
 
 	for (i = 0; i < this.maxCartasMazo; i++) {
-		var equipo = Math.floor((Math.random() * equipos.length));
-		var jugador = Math.floor((Math.random() * jugadores[equipo].length));
+		var jugador = Math.floor((Math.random() * game.global.jugadores.length));
 
-		if (this.mazo.indexOf(game.global.jugadores[equipo][jugador]) != -1) {
-			this.mazo[i] = game.global.jugadores[equipo][jugador];
+		if (this.mazo.indexOf(game.global.jugadores[jugador]) != -1) {
+            i--;
 		} else {
-			i--;
+            this.mazo[i] = game.global.jugadores[jugador];
 		}
 	}
-
+    
 	this.mano = new Array(this.maxcartasMano);
 
 	for (i = 0; i < this.maxcartasMano; i++) {
