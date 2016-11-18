@@ -5,10 +5,7 @@ var game = new Phaser.Game(window.innerWidth - 20, window.innerHeight - 20, Phas
 game.global = {
     ASSETS: 'assets/',
     jugadores: new Array(numTotalJugadores),
-    entrenadores: new Array(equipos.length),
-    maxCartasMazo: 40,
-    maxCartasMano: 10,
-    maxCartasTableroJ: 6
+    entrenadores: new Array(equipos.length) 
 };
 
 

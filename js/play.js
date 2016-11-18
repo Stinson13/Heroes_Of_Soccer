@@ -6,14 +6,39 @@ var playState = {
         imgMenu = game.add.image(0, 0, 'imgMenu');
         imgMenu.scale.setTo(0.6, 0.5);
 
-        this.jugador1 = new Jugador();
-        this.jugador2 = new Jugador();
+        this.jugador = new Jugador();
         
-        this.partida = new Partida (this.jugador1, this.jugador2);
+        button = game.add.button(100, 100, this.jugador.mazo[0].nombre_foto, onClick, this, 2, 1, 0);
+        button.scale.setTo(0.3, 0.3);
+        button.onInputOver.add(over, this);
+        button.onInputOut.add(out, this);
         
-        this.jugador1.robar(this.jugador1, this.jugador1.mazo[0]);
-        this.jugador1.bajarCarta(this.jugador1, this.jugador1.mano[0]);
+        button1 = game.add.button(200, 100, this.jugador.mazo[1].nombre_foto, onClick, this, 2, 1, 0);
+        button1.scale.setTo(0.3, 0.3);
+        button1.onInputOver.add(over, this);
+        button1.onInputOut.add(out, this);
         
+        button2 = game.add.button(300, 100, this.jugador.mazo[2].nombre_foto, onClick, this, 2, 1, 0);
+        button2.scale.setTo(0.3, 0.3);
+        button2.onInputOver.add(over, this);
+        button2.onInputOut.add(out, this);
+        
+        button3 = game.add.button(400, 100, this.jugador.mazo[3].nombre_foto, onClick, this, 2, 1, 0);
+        button3.scale.setTo(0.3, 0.3);
+        button3.onInputOver.add(over, this);
+        button3.onInputOut.add(out, this);
     }
         
 };
+
+function onClick() {
+    console.log("No me toques los cojones");
+}
+
+function over() {
+    button.scale.setTo(0.4, 0.4);
+}
+
+function out() {
+    button.scale.setTo(0.3, 0.3);
+}
