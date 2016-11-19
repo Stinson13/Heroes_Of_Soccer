@@ -4,7 +4,7 @@ function Jugador() {
 
 	var rand = Math.floor((Math.random() * equipos.length));
 	this.entrenador = game.global.entrenadores[rand];
-    this.mazo = new Array (this.maxCartasMazo);
+    this.mazo = new Array ();
 
 	var i;
 
@@ -14,21 +14,23 @@ function Jugador() {
 		if (this.mazo.indexOf(game.global.jugadores[jugador]) != -1) {
             i--;
 		} else {
-            this.mazo[i] = game.global.jugadores[jugador];
+            this.mazo.push(game.global.jugadores[jugador]);
 		}
 	}
     
-	this.mano = new Array(this.maxcartasMano);
+	this.mano = new Array();
 
-	for (i = 0; i < this.maxcartasMano; i++) {
-		var jugador = Math.floor((Math.random() * this.maxcartasMazo));
+	for (i = 0; i < this.maxCartasMano; i++) {
+		var jugador = Math.floor((Math.random() * this.mazo.length));
 
 		if (this.mano.indexOf(this.mazo[jugador]) != -1) {
-			this.mano[i] = this.mazo[jugador];
-		} else {
 			i--;
+		} else {
+			this.mano.push(this.mazo[jugador]);
+			this.mazo.splice(this.mazo.indexOf(this.mazo[jugador]), 1);
 		}
 	}
 
-	this.cementerio;
+	this.cartasEnCampo = new Array();
+	// this.cementerio = new Array();
 }

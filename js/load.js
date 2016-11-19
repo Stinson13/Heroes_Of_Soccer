@@ -18,7 +18,9 @@ var loadState = {
         game.load.image('imgMenu', game.global.ASSETS + 'menu.png');
 		game.load.image('titulo_juego', game.global.ASSETS + 'titulo_juego.png');
 		game.load.image('campoFutbol', game.global.ASSETS + 'campo_futbol.jpg');
-        //game.load.image('imgTablero', game.global.ASSETS + 'tablero.jpg');
+        game.load.image('imgTablero', game.global.ASSETS + 'tablero.png');
+        game.load.image('imgGradaIzqda', game.global.ASSETS + 'grada_izqda.png');
+        game.load.image('imgGradaDrcha', game.global.ASSETS + 'grada_drcha.png');
         //game.load.image('imgFondoTablero', game.global.ASSETS + 'grada_ini.jpg');
 		
 		// Logos
@@ -31,7 +33,9 @@ var loadState = {
 		game.load.spritesheet('creditos_sprite_sheet', game.global.ASSETS + 'botones/creditos_sprite_sheet.png', 286, 46);
 		game.load.spritesheet('volver_sprite_sheet', game.global.ASSETS + 'botones/volver_sprite_sheet.png', 287, 48);
         
-        //Cartas
+        // Cartas
+        // Dordo carta
+        game.load.image('dorsoCarta', game.global.ASSETS + 'dorso_carta.png');
         var i, j;
         var index;
 		
@@ -46,8 +50,8 @@ var loadState = {
 
         // Entrenadores
         for (i = 0, index = 0; i < entrenadores.length; i++, index++) {
-            game.global.entrenadores[index] = new cartaEntrenador(entrenadores[i], equipos[i]);
-            game.load.image(jugadores[i][j], game.global.ASSETS + equipos[i] + '/' + entrenadores[i] + '.png');
+            game.global.entrenadores[index] = new cartaEntrenador(entrenadores[i], equipos[i], entrenadores[i]);
+            game.load.image(entrenadores[i], game.global.ASSETS + equipos[i] + '/' + entrenadores[i] + '.png');
         }   
 
         // Sounds
