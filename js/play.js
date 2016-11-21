@@ -1,4 +1,42 @@
-this.posCartaCampoX = 170;
+this.posicionesEnCampo = [
+    170,
+    295,
+    420,
+    545,
+    670,
+    795,
+    920
+];
+
+this.posicionesEnMano = [
+    300,
+    425,
+    550,
+    675,
+    800
+];
+
+this.posicionesLibresEnCampo = [
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+]
+
+this.posicionesLibresEnMano = [
+    "",
+    "",
+    "",
+    "",
+    ""
+];
+
+this.botonesManoJug1 = new Array();
+this.botonesMazoJug1 = new Array();
+this.botonesCampoJug1 = new Array();
 
 // We create our only state
 var playState = {
@@ -32,27 +70,34 @@ var playState = {
         // Mano
         var i;
         var posX, posY;
-        this.jugadoresManoJug1 = new Array();
-        this.jugadoresMazoJug1 = new Array();
-        this.jugadoresCampoJug1 = new Array();
 
         for (i = 0, posX = 300, posY = 425; i < this.partida.jugador1.mano.length; i++, posX+=125) {
-            this.jugadoresManoJug1[i] = game.add.button(posX, posY, this.partida.jugador1.mano[i].nombre_foto, sacarCarta, 
-                {contexto: this, 
-                    botonesJugadoresMano: this.jugadoresManoJug1,
-                    cartaJugador: this.partida.jugador1.mano[i], 
-                    jugador: this.partida.jugador1, 
-                    jugadoresCampo: this.jugadoresCampoJug1}, 2, 1, 0);
-            this.jugadoresManoJug1[i].scale.setTo(0.2, 0.2);
-            this.jugadoresManoJug1[i].onInputOver.add(over, {param1: this, param2: this.jugadoresManoJug1[i]});
-            this.jugadoresManoJug1[i].onInputOut.add(out, {param1: this, param2: this.jugadoresManoJug1[i]});
+            botonesManoJug1[i] = game.add.button(posX, posY, this.partida.jugador1.mano[i].nombre_foto, sacarCarta, 
+                {
+                    contexto: this, 
+                    botonesJugadoresMano: botonesManoJug1,
+                    cartaAñadir: this.partida.jugador1.mano[i], 
+                    jugadorPartida: this.partida.jugador1, 
+                    botonesJugadoresCampo: botonesCampoJug1
+                }, 2, 1, 0);
+            botonesManoJug1[i].scale.setTo(0.2, 0.2);
+            botonesManoJug1[i].onInputOver.add(over, {param1: this, param2: botonesManoJug1[i]});
+            botonesManoJug1[i].onInputOut.add(out, {param1: this, param2: botonesManoJug1[i]});
+            // Marcamos como ocupada la posicion en la mano
+            posicionesLibresEnMano[i] = this.partida.jugador1.mano[i].nombre_foto;
         }
 
         // Mazo restante
         for (i = 0; i < this.partida.jugador1.mazo.length; i++) {
-            this.jugadoresMazoJug1[i] = game.add.button(1020, 350, 'dorsoCarta', obtenerCarta,
-                {param1: this, param2: this.jugadoresMazoJug1[i]}, 2, 1, 0);
-            this.jugadoresMazoJug1[i].scale.setTo(0.45, 0.45);
+            botonesMazoJug1[i] = game.add.button(1020, 350, 'dorsoCarta', obtenerCarta,
+                {   
+                    contexto: this,
+                    botonesJugadoresMano: botonesManoJug1,
+                    cartaAñadir: this.partida.jugador1.mazo[i],
+                    jugadorPartida: this.partida.jugador1,
+                    botonesJugadoresMazo: botonesMazoJug1
+                }, 2, 1, 0);
+            botonesMazoJug1[i].scale.setTo(0.45, 0.45);
         }
 
         // TODO: añadir el boton para pasar al siguiente turno encima del mazo de robar
@@ -64,45 +109,111 @@ var playState = {
         
 };
 
-function obtenerCarta() {
-    console.log("Obtiene carta");
+function onClick() {
+    console.log("on click");
 }
 
-function sacarCarta() {
-    // Comprobar que no haya mas de 7 en campo
-    if (this.jugadoresCampo.length == 7) {
-        // TODO: mostrar error en pantalla
+function obtenerCarta() {
+    // Comprobar que no haya mas de 5 cartas en mano
+    if (botonesManoJug1.length == 5) {
+        // TODO: Mostrar mensaje de error por pantalla
+        console.log("Ya tienes 5 cartas en mano");
         return;
     }
 
-    // Añadir boton jugador al campo
-    this.jugador.cartasEnCampo.push(this.cartaJugador);
+    // Añadir carta a la mano del jugador
+    this.jugadorPartida.mano.push(this.cartaAñadir);
+
+    // Añadir boton a la mano
+    var posX;
+    var i;
+
+    for (i = 0; i < posicionesLibresEnMano.length; i++) {
+        if (posicionesLibresEnMano[i] == "") {
+            posX = i;
+            posicionesLibresEnMano[i] = this.cartaAñadir.nombre_foto;
+            break;
+        }
+    }
+
+    this.botonCartaAñadir = game.add.button(posicionesEnMano[posX], 425, this.cartaAñadir.nombre_foto, sacarCarta, 
+        {
+            contexto: this, 
+            botonesManoJug1: botonesManoJug1,
+            cartaAñadir: this.cartaAñadir, 
+            jugadorPartida: this.jugadorPartida, 
+            botonesCampoJug1: botonesManoJug1
+        }, 2, 1, 0);
+    this.botonCartaAñadir.scale.setTo(0.2, 0.2);
+    this.botonCartaAñadir.onInputOver.add(over, {param1: this, param2: this.botonCartaAñadir});
+    this.botonCartaAñadir.onInputOut.add(out, {param1: this, param2: this.botonCartaAñadir});
+
+    botonesManoJug1.push(this.botonCartaAñadir);
+
+    // Eliminar boton del mazo
+    if (this.botonesJugadoresMazo.length != 0) {
+        this.botonesJugadoresMazo[this.botonesJugadoresMazo.length - 1].kill();
+        this.botonesJugadoresMazo.splice(this.botonesJugadoresMazo.length - 1, 1);
+    } else {
+        console.log("Sin cartas en el mazo");
+    }
+
+    // Eliminar carta del mazo del jugador
+    this.jugadorPartida.mazo.splice(this.jugadorPartida.mazo.indexOf(this.cartaAñadir), 1);
+}
+
+function sacarCarta() {   
+    // Comprobamos que no haya mas de 7 jugadores en campo
+    if (botonesCampoJug1.length == 7) {
+        // Mostrar error por pantalla
+        console.log("Ya tienes 7 cartas en campo");
+        return;
+    }
+
+    // Añadir carta a las cartas en campo del jugador 
+    this.jugadorPartida.cartasEnCampo.push(this.cartaAñadir);
+
+    // Añadir boton al campo
+    var posX;
+
+    // Localizamos la primera posicion libre en el campo y la marcamos como ocupada
+    for (var i = 0; i < posicionesLibresEnCampo.length; i++) {
+        if (posicionesLibresEnCampo[i] == "") {
+            posX = i;
+            posicionesLibresEnCampo[i] = this.cartaAñadir.nombre_foto;
+            break;
+        }
+    }
+
+    // Desocupamos la posicion en mano
+    for (var i = 0; i < posicionesLibresEnMano.length; i++) {
+        if (posicionesLibresEnMano[i] == this.cartaAñadir.nombre_foto) {
+            posicionesLibresEnMano[i] = "";
+            break;
+        }
+    }
 
     // TODO: cambiar listener y argumetos
-    this.jugadorAñadir = game.add.button(posCartaCampoX, 300, this.cartaJugador.nombre_foto, obtenerCarta, this, 2, 1, 0);
-    this.jugadorAñadir.scale.setTo(0.2, 0.2);
-    this.jugadorAñadir.onInputOver.add(over, {param1: this, param2: this.jugadorAñadir});
-    this.jugadorAñadir.onInputOut.add(out, {param1: this, param2: this.jugadorAñadir});
+    this.botonCartaAñadir = game.add.button(posicionesEnCampo[posX], 300, this.cartaAñadir.nombre_foto, onClick, this, 2, 1, 0);
+    this.botonCartaAñadir.scale.setTo(0.2, 0.2);
+    this.botonCartaAñadir.onInputOver.add(over, {param1: this, param2: this.botonCartaAñadir});
+    this.botonCartaAñadir.onInputOut.add(out, {param1: this, param2: this.botonCartaAñadir});
 
-    this.jugadoresCampo.push(this.jugadorAñadir);
+    botonesCampoJug1.push(this.botonCartaAñadir);
 
-    posCartaCampoX += 125;
+    // Eliminar boton de la mano
+    for (var boton in botonesManoJug1) {
+        if (botonesManoJug1[parseInt(boton)] != null && 
+            botonesManoJug1[boton].key == this.cartaAñadir.nombre_foto) {
 
-    // Eliminar boton del jugador de mano
-    //this.botonesJugadoresMano[this.index].kill();
-    for (var boton in this.botonesJugadoresMano) {
-        if (this.botonesJugadoresMano[boton] != null && 
-            this.botonesJugadoresMano[boton].key == this.cartaJugador.nombre_foto) {
-
-            this.botonesJugadoresMano[boton].kill();
-            this.botonesJugadoresMano[boton] = null;
+            botonesManoJug1[parseInt(boton)].kill();
+            botonesManoJug1.splice(parseInt(boton), 1);
             break;
         } 
     }
 
-    this.jugador.mano.splice(this.cartaJugador, 1);
-
-    // ¿Reajustar cartas del campo?
+    // Eliminar carta de la mano
+    this.jugadorPartida.mano.splice(this.cartaAñadir, 1);
 }
 
 function over() {
