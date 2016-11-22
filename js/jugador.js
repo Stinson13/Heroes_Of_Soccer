@@ -1,6 +1,8 @@
 function Jugador() {
 	this.maxCartasMazo = 40;
-	this.maxCartasMano = 5;
+	this.maxCartasMano = 3;
+	this.manaBalones = 0;
+	this.vida = 0;
 
 	var rand = Math.floor((Math.random() * equipos.length));
 	this.entrenador = game.global.entrenadores[rand];
@@ -33,4 +35,34 @@ function Jugador() {
 
 	this.cartasEnCampo = new Array();
 	// this.cementerio = new Array();
+	this.eliminarCartaMano = eliminarCartaMano;
+	this.addCartaMano = addCartaMano;
+	this.eliminarCartaMazo = eliminarCartaMazo;
+	this.addCartaMazo = addCartaMazo;
+	this.manoIndexOf = manoIndexOf;
+	this.mazoIndexOf = mazoIndexOf;
+}
+
+function eliminarCartaMano(jugador) {
+	this.mano.splice(this.mano.indexOf(jugador), 1);
+}
+
+function addCartaMano(jugador) {
+	this.mano.push(jugador);
+}
+
+function eliminarCartaMazo(jugador) {
+	this.mazo.splice(this.mano.indexOf(jugador), 1);
+}
+
+function addCartaMazo(jugador) {
+	this.mazo.push(jugador);
+}
+
+function manoIndexOf(index) {
+	return this.mano[index];
+}
+
+function mazoIndexOf(index) {
+	return this.mazo[index];
 }

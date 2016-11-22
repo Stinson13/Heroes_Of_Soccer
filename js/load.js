@@ -28,11 +28,13 @@ var loadState = {
 		game.load.spritesheet('twitter_sprite_sheet', game.global.ASSETS + 'logos/twitter_sprite_sheet.png', 50, 51);
 		
 		// Botones
+// buttons: https://dabuttonfactory.com/
 		game.load.spritesheet('jugar_sprite_sheet', game.global.ASSETS + 'botones/jugar_sprite_sheet.png', 287, 48);
 		game.load.spritesheet('reglas_sprite_sheet', game.global.ASSETS + 'botones/reglas_sprite_sheet.png', 287, 46);
 		game.load.spritesheet('creditos_sprite_sheet', game.global.ASSETS + 'botones/creditos_sprite_sheet.png', 286, 46);
 		game.load.spritesheet('volver_sprite_sheet', game.global.ASSETS + 'botones/volver_sprite_sheet.png', 287, 48);
-        
+        game.load.image('end_turn', game.global.ASSETS + 'botones/end_turn.png');
+
         // Cartas
         // Dordo carta
         game.load.image('dorsoCarta', game.global.ASSETS + 'dorso_carta.png');

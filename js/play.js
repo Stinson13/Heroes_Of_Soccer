@@ -72,19 +72,19 @@ var playState = {
         var posX, posY;
 
         for (i = 0, posX = 300, posY = 425; i < this.partida.jugador1.mano.length; i++, posX+=125) {
-            botonesManoJug1[i] = game.add.button(posX, posY, this.partida.jugador1.mano[i].nombre_foto, sacarCarta, 
+            botonesManoJug1[i] = game.add.button(posX, posY, this.partida.getJugador1().manoIndexOf(i).getNombreFoto(), sacarCarta, 
                 {
                     contexto: this, 
                     botonesJugadoresMano: botonesManoJug1,
-                    cartaAñadir: this.partida.jugador1.mano[i], 
-                    jugadorPartida: this.partida.jugador1, 
+                    cartaAñadir: this.partida.jugador1.manoIndexOf(i), 
+                    jugadorPartida: this.partida.getJugador1(), 
                     botonesJugadoresCampo: botonesCampoJug1
                 }, 2, 1, 0);
             botonesManoJug1[i].scale.setTo(0.2, 0.2);
             botonesManoJug1[i].onInputOver.add(over, {param1: this, param2: botonesManoJug1[i]});
             botonesManoJug1[i].onInputOut.add(out, {param1: this, param2: botonesManoJug1[i]});
             // Marcamos como ocupada la posicion en la mano
-            posicionesLibresEnMano[i] = this.partida.jugador1.mano[i].nombre_foto;
+            posicionesLibresEnMano[i] = this.partida.getJugador1().manoIndexOf(i).getNombreFoto();
         }
 
         // Mazo restante
@@ -93,14 +93,15 @@ var playState = {
                 {   
                     contexto: this,
                     botonesJugadoresMano: botonesManoJug1,
-                    cartaAñadir: this.partida.jugador1.mazo[i],
-                    jugadorPartida: this.partida.jugador1,
+                    cartaAñadir: this.partida.getJugador1().mazoIndexOf(i),
+                    jugadorPartida: this.partida.getJugador1(),
                     botonesJugadoresMazo: botonesMazoJug1
                 }, 2, 1, 0);
             botonesMazoJug1[i].scale.setTo(0.45, 0.45);
         }
 
         // TODO: añadir el boton para pasar al siguiente turno encima del mazo de robar
+        game.add.button(1040, 275, 'end_turn', terminarTurno, {contexto: this, partida: this.partida}, 2, 1, 0);
 
         // Añadimos al tablero las cartas del jugador2
         // TODO: mismo procedimiento que con jugador1
@@ -108,6 +109,10 @@ var playState = {
     }
         
 };
+
+function terminarTurno() {
+    console.log("Terminar turno");
+}
 
 function onClick() {
     console.log("on click");
@@ -122,7 +127,7 @@ function obtenerCarta() {
     }
 
     // Añadir carta a la mano del jugador
-    this.jugadorPartida.mano.push(this.cartaAñadir);
+    this.jugadorPartida.addCartaMano(this.cartaAñadir);
 
     // Añadir boton a la mano
     var posX;
@@ -159,7 +164,7 @@ function obtenerCarta() {
     }
 
     // Eliminar carta del mazo del jugador
-    this.jugadorPartida.mazo.splice(this.jugadorPartida.mazo.indexOf(this.cartaAñadir), 1);
+    this.jugadorPartida.eliminarCartaMazo(this.cartaAñadir);
 }
 
 function sacarCarta() {   
@@ -171,7 +176,7 @@ function sacarCarta() {
     }
 
     // Añadir carta a las cartas en campo del jugador 
-    this.jugadorPartida.cartasEnCampo.push(this.cartaAñadir);
+    this.jugadorPartida.addCartaMazo(this.cartaAñadir);
 
     // Añadir boton al campo
     var posX;
@@ -213,7 +218,7 @@ function sacarCarta() {
     }
 
     // Eliminar carta de la mano
-    this.jugadorPartida.mano.splice(this.cartaAñadir, 1);
+    this.jugadorPartida.eliminarCartaMano(this.cartaAñadir);
 }
 
 function over() {
