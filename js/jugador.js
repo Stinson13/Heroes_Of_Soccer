@@ -39,8 +39,15 @@ function Jugador() {
 	this.addCartaMano = addCartaMano;
 	this.eliminarCartaMazo = eliminarCartaMazo;
 	this.addCartaMazo = addCartaMazo;
+	this.manoLength = manoLength;
+	this.mazoLength = mazoLength;
 	this.manoIndexOf = manoIndexOf;
 	this.mazoIndexOf = mazoIndexOf;
+	this.getEntrenador = getEntrenador;
+	this.getVida = getVida;
+	this.restarVida = restarVida;
+	this.getManaBalones = getManaBalones;
+	this.restarManaBalones = restarManaBalones;
 }
 
 function eliminarCartaMano(jugador) {
@@ -59,10 +66,38 @@ function addCartaMazo(jugador) {
 	this.mazo.push(jugador);
 }
 
+function manoLength() {
+	return this.mano.length;
+}
+
+function mazoLength() {
+	return this.mazo.length;
+}
+
 function manoIndexOf(index) {
 	return this.mano[index];
 }
 
 function mazoIndexOf(index) {
 	return this.mazo[index];
+}
+
+function getEntrenador() {
+	return this.entrenador;
+}
+
+function getVida() {
+	return this.vida;
+}
+
+function getManaBalones() {
+	return this.manaBalones;
+}
+
+function restarVida(restaVida) {
+	this.vida -= restaVida;;
+}
+
+function restarManaBalones(restaManaBalones) {
+	this.manaBalones -= restaManaBalones;
 }
