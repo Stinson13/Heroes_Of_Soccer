@@ -1,12 +1,24 @@
 var loadState = {
     
     preload: function () {
+        
+        game.stage.backgroundColor = 'black';
+        
+        imgMenu = game.add.image(0, 0, 'imgMenu');
+        imgMenu.scale.setTo(0.6, 0.5);
+        
+        loadImage = game.add.image(0, 0, 'loadImage');
+        loadImage.scale.setTo(2.095, 1.090);
+        
+        tituloJuego = game.add.image(100, 180, 'titulo_juego');
+		tituloJuego.scale.setTo(0.6, 1);
+        
         // Add a 'loading...' label on the screen
-        var loadingLabel = game.add.text(game.world.centerX, 150, 'loading...',{ font: '30px Arial', fill: '#ffffff' });
+        var loadingLabel = game.add.text(600, 100, 'loading...',{ font: '30px Arial', fill: '#ffffff' });
         loadingLabel.anchor.setTo(0.5, 0.5);
         
         // Display the progress bar
-        var progressBar = game.add.sprite(game.world.centerX, 200, 'progressBar');
+        var progressBar = game.add.sprite(595, 135, 'progressBar');
         progressBar.anchor.setTo(0.5, 0.5);
         game.load.setPreloadSprite(progressBar);
         
@@ -15,8 +27,7 @@ var loadState = {
         // Load a new asset that we will use in the menu state
 // Spritesheet: https://www.leshylabs.com/apps/sstool/
 // Gimp: escalado de las imagenes
-        game.load.image('imgMenu', game.global.ASSETS + 'menu.png');
-		game.load.image('titulo_juego', game.global.ASSETS + 'titulo_juego.png');
+        //game.load.image('imgMenu', game.global.ASSETS + 'menu.png');
 		game.load.image('campoFutbol', game.global.ASSETS + 'campo_futbol.jpg');
         game.load.image('imgTablero', game.global.ASSETS + 'tablero.png');
         game.load.image('imgGradaIzqda', game.global.ASSETS + 'grada_izqda.png');
@@ -60,6 +71,8 @@ var loadState = {
     },
     
     create: function() {
+        
+        alert("Esperaaaaaa");
         
         // Go to the menu state
         game.state.start('menu');
