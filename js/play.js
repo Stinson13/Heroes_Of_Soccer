@@ -73,10 +73,12 @@ this.posicionesLibresEnManoJug2 = [
 this.botonesManoJug1 = new Array();
 this.botonesMazoJug1 = new Array();
 this.botonesCampoJug1 = new Array();
+this.balonesJug1 = new Array();
 
 this.botonesManoJug2 = new Array();
 this.botonesMazoJug2 = new Array();
 this.botonesCampoJug2 = new Array();
+this.balonesJug2 = new Array();
 
 this.botonEndTurn;
 
@@ -102,7 +104,17 @@ var playState = {
 
         // TODO: añadir encima del entrenador la vida del jugador1
 
-        // TODO: añadir encima del entrenador los balones, que es el mana del jugador1
+        // TODO: añadir debajo del entrenador los balones, que es el mana del jugador1
+        //barra de balones
+        barrabalones1 = game.add.image(45, 565, 'barrabalones');
+        barrabalones1.scale.setTo(0.7, 0.7);
+        
+        for (i = 0, posX = 38, posY = 563; i < this.partida.getJugador1().getManaBalones(); i++, posX += 25 ) {
+            
+            balonesJug1[i] = game.add.image(posX, posY, 'balon');
+            balonesJug1[i].scale.setTo(0.1, 0.1);
+            
+        }
 
         // Añadimos al tablero las cartas del jugador1
         // Entrenador
@@ -144,7 +156,16 @@ var playState = {
 
         // TODO: añadir encima del entrenador la vida del jugador2
 
-        // TODO: añadir encima del entrenador los balones, que es el mana del jugador2
+        // TODO: añadir debajo del entrenador los balones, que es el mana del jugador2
+        barrabalones2 = game.add.image(42, 15, 'barrabalones');
+        barrabalones2.scale.setTo(0.7, 0.7);
+        
+        for (i = 0, posX = 35, posY = 13; i < this.partida.getJugador2().getManaBalones(); i++, posX += 25 ) {
+            
+            balonesJug2[i] = game.add.image(posX, posY, 'balon');
+            balonesJug2[i].scale.setTo(0.1, 0.1);
+            
+        }
 
         // Añadimos al tablero las cartas del jugador2
         // Entrenador
@@ -192,6 +213,7 @@ var playState = {
         if (this.partida.getTurnoJugador() == 1) {
             botonEndTurn.inputEnabled = false;
         }
+        
     }   
 };
 

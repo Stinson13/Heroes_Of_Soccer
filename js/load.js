@@ -37,6 +37,8 @@ var loadState = {
 		// Logos
 		game.load.image('logoAMA', game.global.ASSETS + 'logos/AMA.png');
 		game.load.spritesheet('twitter_sprite_sheet', game.global.ASSETS + 'logos/twitter_sprite_sheet.png', 50, 51);
+        game.load.image('balon', game.global.ASSETS + 'balon.png');
+        game.load.image('barrabalones', game.global.ASSETS + 'barrabalones.png');
 		
 		// Botones
 // buttons: https://dabuttonfactory.com/
@@ -71,8 +73,6 @@ var loadState = {
     },
     
     create: function() {
-        
-        alert("Esperaaaaaa");
         
         // Go to the menu state
         game.state.start('menu');

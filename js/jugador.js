@@ -1,8 +1,9 @@
 function Jugador() {
 	this.maxCartasMazo = 40;
 	this.maxCartasMano = 3;
-	this.manaBalones = 0;
-	this.vida = 0;
+    this.maxBalones = 10;
+	this.manaBalones = 10;
+	this.vida = 30;
 
 	var rand = Math.floor((Math.random() * equipos.length));
 	this.entrenador = game.global.entrenadores[rand];
@@ -95,7 +96,7 @@ function getManaBalones() {
 }
 
 function restarVida(restaVida) {
-	this.vida -= restaVida;;
+	this.vida -= restaVida;
 }
 
 function restarManaBalones(restaManaBalones) {
