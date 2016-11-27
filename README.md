@@ -11,7 +11,7 @@ Requerimientos previos:
   
       i) Abrir la carpeta del proyecto en el editor de texto Brackets y se podrá visualizar como si se estuviese ejecutándo en un servidor.
       
-      ii) A través de Python ejecutándo el siguiente comando en la carpeta del proyecto:
+      ii) A través de Python ejecutándo el siguiente comando en la terminal, dentro de la carpeta del proyecto:
         
           python -m SimpleHTTPServer
           
