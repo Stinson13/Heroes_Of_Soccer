@@ -1,4 +1,24 @@
-# Heroes_Of_Soccer
-Videojuego Heroes Of Soccer de la asignatura INTRODUCCIÓN A LA PROGRAMACIÓN DE VIDEOJUEGOS Y GRÁFICOS - EPS UAM
+# Videojuego Heroes Of Soccer
 
+Asignatura: INTRODUCCIÓN A LA PROGRAMACIÓN DE VIDEOJUEGOS Y GRÁFICOS
+Universidad Autónoma de Madrid - Escuela Politécnica Superior
 
+# Modo de utilización
+
+Requerimientos previos:
+
+  - Tener un servidor web, necesario para la ejecución de Phaser. Para ello tenemos dos opciones:
+  
+      i) Abrir la carpeta del proyecto en el editor de texto Brackets y se podrá visualizar como si se estuviese ejecutándo en un servidor.
+      
+      ii) A través de Python ejecutándo el siguiente comando en la carpeta del proyecto:
+        
+          python -m SimpleHTTPServer
+          
+Navegación por el menú
+
+Inicialmente nos encontraremos con un menú principal, en el que nos encontraremos tres opciones:
+  
+   - Jugar. Inicia un juego.
+   - Reglas. Muestra las reglas del juego.
+   - Créditos. Muestra detalles de la organización del equipo llevada durante el prototipo.
