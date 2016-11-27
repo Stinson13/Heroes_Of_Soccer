@@ -2,7 +2,7 @@ function Jugador() {
 	this.maxCartasMazo = 40;
 	this.maxCartasMano = 3;
     this.maxBalones = 10;
-	this.manaBalones = 10;
+	this.manaBalones = 1;
 	this.vida = 30;
 
 	var rand = Math.floor((Math.random() * equipos.length));
