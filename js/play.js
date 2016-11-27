@@ -102,14 +102,16 @@ var playState = {
 
         this.partida = new Partida();
 
-        // TODO: añadir encima del entrenador la vida del jugador1
+        // Vida del jugador1
+        for (i = 0; i <= this.partida.getJugador1().getVida(); i++) {
+            game.add.image(40, 315, 'vida' + i);
+        }
 
-        // TODO: añadir debajo del entrenador los balones, que es el mana del jugador1
-        //barra de balones
-        barrabalones1 = game.add.image(45, 565, 'barrabalones');
+        // Barra de balones
+        barrabalones1 = game.add.image(5, 565, 'barrabalones');
         barrabalones1.scale.setTo(0.7, 0.7);
         
-        for (i = 0, posX = 38, posY = 563; i < this.partida.getJugador1().getManaBalones(); i++, posX += 25 ) {
+        for (i = 0, posX = 0, posY = 563; i < this.partida.getJugador1().getManaBalones(); i++, posX += 25 ) {
             
             balonesJug1[i] = game.add.image(posX, posY, 'balon');
             balonesJug1[i].scale.setTo(0.1, 0.1);
@@ -154,13 +156,17 @@ var playState = {
             botonesMazoJug1[i].scale.setTo(0.45, 0.45);
         }
 
-        // TODO: añadir encima del entrenador la vida del jugador2
+        // Vida del jugador2
+        for (i = 0; i <= this.partida.getJugador2().getVida(); i++) {
+            game.add.image(40, 240, 'vida' + i);
+        }
 
-        // TODO: añadir debajo del entrenador los balones, que es el mana del jugador2
-        barrabalones2 = game.add.image(42, 15, 'barrabalones');
+
+        // Barra balones
+        barrabalones2 = game.add.image(5, 5, 'barrabalones');
         barrabalones2.scale.setTo(0.7, 0.7);
         
-        for (i = 0, posX = 35, posY = 13; i < this.partida.getJugador2().getManaBalones(); i++, posX += 25 ) {
+        for (i = 0, posX = 0, posY = 3; i < this.partida.getJugador2().getManaBalones(); i++, posX += 25 ) {
             
             balonesJug2[i] = game.add.image(posX, posY, 'balon');
             balonesJug2[i].scale.setTo(0.1, 0.1);
@@ -169,7 +175,7 @@ var playState = {
 
         // Añadimos al tablero las cartas del jugador2
         // Entrenador
-        this.entrenadorJugador2 = game.add.image(-5, 50, this.partida.getJugador2().getEntrenador().getNombreFoto());
+        this.entrenadorJugador2 = game.add.image(-5, 45, this.partida.getJugador2().getEntrenador().getNombreFoto());
         this.entrenadorJugador2.scale.setTo(0.35, 0.35);
 
         // Añadimos al tablero las cartas del jugador2

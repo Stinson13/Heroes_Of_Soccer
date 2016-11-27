@@ -48,6 +48,11 @@ var loadState = {
 		game.load.spritesheet('volver_sprite_sheet', game.global.ASSETS + 'botones/volver_sprite_sheet.png', 287, 48);
         game.load.image('end_turn', game.global.ASSETS + 'botones/end_turn.png');
 
+        // Vida
+        for (i = 0; i <= 30; i++) {
+            game.load.image('vida' + i, game.global.ASSETS + 'vida/vida_' + i + '.png');
+        }
+
         // Cartas
         // Dordo carta
         game.load.image('dorsoCarta', game.global.ASSETS + 'dorso_carta.png');
