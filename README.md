@@ -4,9 +4,6 @@ Videojuego Heroes Of Soccer
 Asignatura: INTRODUCCIÓN A LA PROGRAMACIÓN DE VIDEOJUEGOS Y GRÁFICOS
 Universidad Autónoma de Madrid - Escuela Politécnica Superior
 
-Modo de utilización
--------------------
-
 Requerimientos previos:
 -----------------------
 
