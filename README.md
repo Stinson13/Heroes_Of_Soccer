@@ -1,11 +1,14 @@
-# Videojuego Heroes Of Soccer
+Videojuego Heroes Of Soccer
+===========================
 
 Asignatura: INTRODUCCIÓN A LA PROGRAMACIÓN DE VIDEOJUEGOS Y GRÁFICOS
 Universidad Autónoma de Madrid - Escuela Politécnica Superior
 
-# Modo de utilización
+Modo de utilización
+-------------------
 
 Requerimientos previos:
+-----------------------
 
   - Tener un servidor web, necesario para la ejecución de Phaser. Para ello tenemos dos opciones:
   
@@ -16,6 +19,7 @@ Requerimientos previos:
           python -m SimpleHTTPServer
           
 Navegación por el menú
+----------------------
 
 Inicialmente nos encontraremos con un menú principal, en el que nos encontraremos tres opciones:
   
