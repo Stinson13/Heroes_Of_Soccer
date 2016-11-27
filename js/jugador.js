@@ -1,6 +1,9 @@
 function Jugador() {
 	this.maxCartasMazo = 40;
-	this.maxCartasMano = 5;
+	this.maxCartasMano = 3;
+    this.maxBalones = 10;
+	this.manaBalones = 10;
+	this.vida = 30;
 
 	var rand = Math.floor((Math.random() * equipos.length));
 	this.entrenador = game.global.entrenadores[rand];
@@ -33,4 +36,69 @@ function Jugador() {
 
 	this.cartasEnCampo = new Array();
 	// this.cementerio = new Array();
+	this.eliminarCartaMano = eliminarCartaMano;
+	this.addCartaMano = addCartaMano;
+	this.eliminarCartaMazo = eliminarCartaMazo;
+	this.addCartaMazo = addCartaMazo;
+	this.manoLength = manoLength;
+	this.mazoLength = mazoLength;
+	this.manoIndexOf = manoIndexOf;
+	this.mazoIndexOf = mazoIndexOf;
+	this.getEntrenador = getEntrenador;
+	this.getVida = getVida;
+	this.restarVida = restarVida;
+	this.getManaBalones = getManaBalones;
+	this.restarManaBalones = restarManaBalones;
+}
+
+function eliminarCartaMano(jugador) {
+	this.mano.splice(this.mano.indexOf(jugador), 1);
+}
+
+function addCartaMano(jugador) {
+	this.mano.push(jugador);
+}
+
+function eliminarCartaMazo(jugador) {
+	this.mazo.splice(this.mano.indexOf(jugador), 1);
+}
+
+function addCartaMazo(jugador) {
+	this.mazo.push(jugador);
+}
+
+function manoLength() {
+	return this.mano.length;
+}
+
+function mazoLength() {
+	return this.mazo.length;
+}
+
+function manoIndexOf(index) {
+	return this.mano[index];
+}
+
+function mazoIndexOf(index) {
+	return this.mazo[index];
+}
+
+function getEntrenador() {
+	return this.entrenador;
+}
+
+function getVida() {
+	return this.vida;
+}
+
+function getManaBalones() {
+	return this.manaBalones;
+}
+
+function restarVida(restaVida) {
+	this.vida -= restaVida;
+}
+
+function restarManaBalones(restaManaBalones) {
+	this.manaBalones -= restaManaBalones;
 }

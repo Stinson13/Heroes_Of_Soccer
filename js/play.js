@@ -1,4 +1,4 @@
-this.posicionesEnCampo = [
+this.posicionesEnCampoJug1 = [
     170,
     295,
     420,
@@ -8,7 +8,7 @@ this.posicionesEnCampo = [
     920
 ];
 
-this.posicionesEnMano = [
+this.posicionesEnManoJug1 = [
     300,
     425,
     550,
@@ -16,7 +16,7 @@ this.posicionesEnMano = [
     800
 ];
 
-this.posicionesLibresEnCampo = [
+this.posicionesLibresEnCampoJug1 = [
     "",
     "",
     "",
@@ -24,9 +24,45 @@ this.posicionesLibresEnCampo = [
     "",
     "",
     ""
-]
+];
 
-this.posicionesLibresEnMano = [
+this.posicionesLibresEnManoJug1 = [
+    "",
+    "",
+    "",
+    "",
+    ""
+];
+
+this.posicionesEnCampoJug2 = [
+    170,
+    295,
+    420,
+    545,
+    670,
+    795,
+    920
+];
+
+this.posicionesEnManoJug2 = [
+    300,
+    425,
+    550,
+    675,
+    800
+];
+
+this.posicionesLibresEnCampoJug2 = [
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+];
+
+this.posicionesLibresEnManoJug2 = [
     "",
     "",
     "",
@@ -37,6 +73,14 @@ this.posicionesLibresEnMano = [
 this.botonesManoJug1 = new Array();
 this.botonesMazoJug1 = new Array();
 this.botonesCampoJug1 = new Array();
+this.balonesJug1 = new Array();
+
+this.botonesManoJug2 = new Array();
+this.botonesMazoJug2 = new Array();
+this.botonesCampoJug2 = new Array();
+this.balonesJug2 = new Array();
+
+this.botonEndTurn;
 
 // We create our only state
 var playState = {
@@ -58,59 +102,135 @@ var playState = {
 
         this.partida = new Partida();
 
-        // TODO: añadir encima del entrenador los balones, que es el mana del jugador
+        // TODO: añadir encima del entrenador la vida del jugador1
+
+        // TODO: añadir debajo del entrenador los balones, que es el mana del jugador1
+        //barra de balones
+        barrabalones1 = game.add.image(45, 565, 'barrabalones');
+        barrabalones1.scale.setTo(0.7, 0.7);
+        
+        for (i = 0, posX = 38, posY = 563; i < this.partida.getJugador1().getManaBalones(); i++, posX += 25 ) {
+            
+            balonesJug1[i] = game.add.image(posX, posY, 'balon');
+            balonesJug1[i].scale.setTo(0.1, 0.1);
+            
+        }
 
         // Añadimos al tablero las cartas del jugador1
         // Entrenador
-        this.entrenadorJugador1 = game.add.image(-5, 370, this.partida.jugador1.entrenador.nombre_foto);
+        this.entrenadorJugador1 = game.add.image(-5, 370, this.partida.getJugador1().getEntrenador().getNombreFoto());
         this.entrenadorJugador1.scale.setTo(0.35, 0.35);
-
-        // TODO: añadir debajo del entrenador la vida del jugador
 
         // Mano
         var i;
         var posX, posY;
 
-        for (i = 0, posX = 300, posY = 425; i < this.partida.jugador1.mano.length; i++, posX+=125) {
-            botonesManoJug1[i] = game.add.button(posX, posY, this.partida.jugador1.mano[i].nombre_foto, sacarCarta, 
+        for (i = 0, posX = 300, posY = 425; i < this.partida.getJugador1().manoLength(); i++, posX+=125) {
+            botonesManoJug1[i] = game.add.button(posX, posY, this.partida.getJugador1().manoIndexOf(i).getNombreFoto(), sacarCarta, 
                 {
                     contexto: this, 
                     botonesJugadoresMano: botonesManoJug1,
-                    cartaAñadir: this.partida.jugador1.mano[i], 
-                    jugadorPartida: this.partida.jugador1, 
+                    cartaAñadir: this.partida.getJugador1().manoIndexOf(i), 
+                    jugadorPartida: this.partida.getJugador1(), 
                     botonesJugadoresCampo: botonesCampoJug1
                 }, 2, 1, 0);
             botonesManoJug1[i].scale.setTo(0.2, 0.2);
             botonesManoJug1[i].onInputOver.add(over, {param1: this, param2: botonesManoJug1[i]});
             botonesManoJug1[i].onInputOut.add(out, {param1: this, param2: botonesManoJug1[i]});
             // Marcamos como ocupada la posicion en la mano
-            posicionesLibresEnMano[i] = this.partida.jugador1.mano[i].nombre_foto;
+            posicionesLibresEnManoJug1[i] = this.partida.getJugador1().manoIndexOf(i).getNombreFoto();
         }
 
         // Mazo restante
-        for (i = 0; i < this.partida.jugador1.mazo.length; i++) {
+        for (i = 0; i < this.partida.getJugador1().mazoLength(); i++) {
             botonesMazoJug1[i] = game.add.button(1020, 350, 'dorsoCarta', obtenerCarta,
                 {   
                     contexto: this,
                     botonesJugadoresMano: botonesManoJug1,
-                    cartaAñadir: this.partida.jugador1.mazo[i],
-                    jugadorPartida: this.partida.jugador1,
+                    cartaAñadir: this.partida.getJugador1().mazoIndexOf(i),
+                    jugadorPartida: this.partida.getJugador1(),
                     botonesJugadoresMazo: botonesMazoJug1
                 }, 2, 1, 0);
             botonesMazoJug1[i].scale.setTo(0.45, 0.45);
         }
 
-        // TODO: añadir el boton para pasar al siguiente turno encima del mazo de robar
+        // TODO: añadir encima del entrenador la vida del jugador2
+
+        // TODO: añadir debajo del entrenador los balones, que es el mana del jugador2
+        barrabalones2 = game.add.image(42, 15, 'barrabalones');
+        barrabalones2.scale.setTo(0.7, 0.7);
+        
+        for (i = 0, posX = 35, posY = 13; i < this.partida.getJugador2().getManaBalones(); i++, posX += 25 ) {
+            
+            balonesJug2[i] = game.add.image(posX, posY, 'balon');
+            balonesJug2[i].scale.setTo(0.1, 0.1);
+            
+        }
 
         // Añadimos al tablero las cartas del jugador2
-        // TODO: mismo procedimiento que con jugador1
-        //       Mostrar entrenador en mismo lado que jugador1
-    }
+        // Entrenador
+        this.entrenadorJugador2 = game.add.image(-5, 50, this.partida.getJugador2().getEntrenador().getNombreFoto());
+        this.entrenadorJugador2.scale.setTo(0.35, 0.35);
+
+        // Añadimos al tablero las cartas del jugador2
+        for (i = 0, posX = 300, posY = 15; i < this.partida.getJugador2().manoLength(); i++, posX+=125) {
+            botonesManoJug2[i] = game.add.button(posX, posY, 'dorsoCarta', sacarCarta, 
+                {
+                    contexto: this, 
+                    botonesJugadoresMano: botonesManoJug1,
+                    cartaAñadir: this.partida.getJugador1().manoIndexOf(i), 
+                    jugadorPartida: this.partida.getJugador1(), 
+                    botonesJugadoresCampo: botonesCampoJug1
+                }, 2, 1, 0);
+            botonesManoJug2[i].scale.setTo(0.2, 0.2);
+            botonesManoJug2[i].inputEnabled = false;
+
+            // Marcamos como ocupada la posicion en la mano
+            posicionesLibresEnManoJug2[i] = this.partida.getJugador2().manoIndexOf(i).getNombreFoto();
+        }
+
+        // Mazo restante
+        for (i = 0; i < this.partida.getJugador2().manoLength(); i++) {
+            botonesMazoJug2[i] = game.add.button(1020, 15, 'dorsoCarta', obtenerCarta,
+                {   
+                    contexto: this,
+                    botonesJugadoresMano: botonesManoJug2,
+                    cartaAñadir: this.partida.getJugador2().mazoIndexOf(i),
+                    jugadorPartida: this.partida.getJugador2(),
+                    botonesJugadoresMazo: botonesMazoJug2
+                }, 2, 1, 0);
+            botonesMazoJug2[i].scale.setTo(0.45, 0.45);
+            botonesMazoJug2[i].inputEnabled = false;
+        }
+
+        // Añadir el boton para pasar al siguiente turno encima del mazo de robar
+        botonEndTurn = game.add.button(1040, 275, 'end_turn', terminarTurno, 
+            {
+                contexto: this, 
+                partida: this.partida
+            }, 2, 1, 0);
+
+        if (this.partida.getTurnoJugador() == 1) {
+            botonEndTurn.inputEnabled = false;
+        }
         
+    }   
 };
 
 function onClick() {
-    console.log("on click");
+    console.log("Click");
+}
+
+function terminarTurno() {
+    console.log("Terminar turno");
+
+    // Turno del jugador1
+    if (this.partida.getTurnoJugador() == 0) {
+        botonEndTurn.inputEnabled = false;
+        // TODO: llamar funcion para que maquina saque carta
+    } else {
+        botonEndTurn.inputEnabled = true;
+    }
 }
 
 function obtenerCarta() {
@@ -122,21 +242,21 @@ function obtenerCarta() {
     }
 
     // Añadir carta a la mano del jugador
-    this.jugadorPartida.mano.push(this.cartaAñadir);
+    this.jugadorPartida.addCartaMano(this.cartaAñadir);
 
     // Añadir boton a la mano
     var posX;
     var i;
 
-    for (i = 0; i < posicionesLibresEnMano.length; i++) {
-        if (posicionesLibresEnMano[i] == "") {
+    for (i = 0; i < posicionesLibresEnManoJug1.length; i++) {
+        if (posicionesLibresEnManoJug1[i] == "") {
             posX = i;
-            posicionesLibresEnMano[i] = this.cartaAñadir.nombre_foto;
+            posicionesLibresEnManoJug1[i] = this.cartaAñadir.nombre_foto;
             break;
         }
     }
 
-    this.botonCartaAñadir = game.add.button(posicionesEnMano[posX], 425, this.cartaAñadir.nombre_foto, sacarCarta, 
+    this.botonCartaAñadir = game.add.button(posicionesEnManoJug1[posX], 425, this.cartaAñadir.nombre_foto, sacarCarta, 
         {
             contexto: this, 
             botonesManoJug1: botonesManoJug1,
@@ -159,10 +279,10 @@ function obtenerCarta() {
     }
 
     // Eliminar carta del mazo del jugador
-    this.jugadorPartida.mazo.splice(this.jugadorPartida.mazo.indexOf(this.cartaAñadir), 1);
+    this.jugadorPartida.eliminarCartaMazo(this.cartaAñadir);
 }
 
-function sacarCarta() {   
+function sacarCarta() {
     // Comprobamos que no haya mas de 7 jugadores en campo
     if (botonesCampoJug1.length == 7) {
         // Mostrar error por pantalla
@@ -171,30 +291,30 @@ function sacarCarta() {
     }
 
     // Añadir carta a las cartas en campo del jugador 
-    this.jugadorPartida.cartasEnCampo.push(this.cartaAñadir);
+    this.jugadorPartida.addCartaMazo(this.cartaAñadir);
 
     // Añadir boton al campo
     var posX;
 
     // Localizamos la primera posicion libre en el campo y la marcamos como ocupada
-    for (var i = 0; i < posicionesLibresEnCampo.length; i++) {
-        if (posicionesLibresEnCampo[i] == "") {
+    for (var i = 0; i < posicionesLibresEnCampoJug1.length; i++) {
+        if (posicionesLibresEnCampoJug1[i] == "") {
             posX = i;
-            posicionesLibresEnCampo[i] = this.cartaAñadir.nombre_foto;
+            posicionesLibresEnCampoJug1[i] = this.cartaAñadir.nombre_foto;
             break;
         }
     }
 
     // Desocupamos la posicion en mano
-    for (var i = 0; i < posicionesLibresEnMano.length; i++) {
-        if (posicionesLibresEnMano[i] == this.cartaAñadir.nombre_foto) {
-            posicionesLibresEnMano[i] = "";
+    for (var i = 0; i < posicionesLibresEnManoJug1.length; i++) {
+        if (posicionesLibresEnManoJug1[i] == this.cartaAñadir.nombre_foto) {
+            posicionesLibresEnManoJug1[i] = "";
             break;
         }
     }
 
     // TODO: cambiar listener y argumetos
-    this.botonCartaAñadir = game.add.button(posicionesEnCampo[posX], 300, this.cartaAñadir.nombre_foto, onClick, this, 2, 1, 0);
+    this.botonCartaAñadir = game.add.button(posicionesEnCampoJug1[posX], 300, this.cartaAñadir.nombre_foto, onClick, this, 2, 1, 0);
     this.botonCartaAñadir.scale.setTo(0.2, 0.2);
     this.botonCartaAñadir.onInputOver.add(over, {param1: this, param2: this.botonCartaAñadir});
     this.botonCartaAñadir.onInputOut.add(out, {param1: this, param2: this.botonCartaAñadir});
@@ -213,7 +333,7 @@ function sacarCarta() {
     }
 
     // Eliminar carta de la mano
-    this.jugadorPartida.mano.splice(this.cartaAñadir, 1);
+    this.jugadorPartida.eliminarCartaMano(this.cartaAñadir);
 }
 
 function over() {
