@@ -100,6 +100,9 @@ var playState = {
         this.imgGradaDrcha = game.add.image(1025, 0, 'imgGradaDrcha');
         this.imgGradaDrcha.scale.setTo(1.35, 1.176);
 
+        this.terminarJuego = game.add.button(1040, 560, 'rueda_sistema', mostrarPanelTerminarJuego, this, 2, 1, 0);
+        this.terminarJuego.scale.setTo(0.8, 0.8);
+
         this.partida = new Partida();
 
         // Vida del jugador1
@@ -223,12 +226,16 @@ var playState = {
     }   
 };
 
+function mostrarPanelTerminarJuego () {
+    alert("Función terminar juego no disponible");
+}
+
 function onClick() {
-    console.log("Click");
+    alert("Función atacar no disponible");
 }
 
 function terminarTurno() {
-    console.log("Terminar turno");
+    alert("Terminar turno");
 
     // Turno del jugador1
     if (this.partida.getTurnoJugador() == 0) {
@@ -243,7 +250,7 @@ function obtenerCarta() {
     // Comprobar que no haya mas de 5 cartas en mano
     if (botonesManoJug1.length == 5) {
         // TODO: Mostrar mensaje de error por pantalla
-        console.log("Ya tienes 5 cartas en mano");
+        alert("Ya tienes 5 cartas en mano");
         return;
     }
 
@@ -292,7 +299,7 @@ function sacarCarta() {
     // Comprobamos que no haya mas de 7 jugadores en campo
     if (botonesCampoJug1.length == 7) {
         // Mostrar error por pantalla
-        console.log("Ya tienes 7 cartas en campo");
+        alert("Ya tienes 7 cartas en campo");
         return;
     }
 

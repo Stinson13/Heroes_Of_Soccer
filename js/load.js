@@ -49,6 +49,7 @@ var loadState = {
         game.load.spritesheet('define_tu_mazo', game.global.ASSETS + 'botones/define_tu_mazo.png', 285, 48);
         game.load.spritesheet('mazo_aleatorio', game.global.ASSETS + 'botones/mazo_aleatorio.png', 286, 48);
         game.load.image('end_turn', game.global.ASSETS + 'botones/end_turn.png');
+        game.load.image('rueda_sistema', game.global.ASSETS + 'botones/rueda_sistema.png');
 
         // Vida
         for (i = 0; i <= 30; i++) {
