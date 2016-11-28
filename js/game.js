@@ -13,6 +13,7 @@ game.global = {
 game.state.add('boot', bootState);
 game.state.add('load', loadState);
 game.state.add('menu', menuState);
+game.state.add('menuJugar', menuJugarState);
 game.state.add('play', playState);
 game.state.add('reglas', reglasState);
 game.state.add('creditos', creditosState);

@@ -46,6 +46,8 @@ var loadState = {
 		game.load.spritesheet('reglas_sprite_sheet', game.global.ASSETS + 'botones/reglas_sprite_sheet.png', 287, 46);
 		game.load.spritesheet('creditos_sprite_sheet', game.global.ASSETS + 'botones/creditos_sprite_sheet.png', 286, 46);
 		game.load.spritesheet('volver_sprite_sheet', game.global.ASSETS + 'botones/volver_sprite_sheet.png', 287, 48);
+        game.load.spritesheet('define_tu_mazo', game.global.ASSETS + 'botones/define_tu_mazo.png', 285, 48);
+        game.load.spritesheet('mazo_aleatorio', game.global.ASSETS + 'botones/mazo_aleatorio.png', 286, 48);
         game.load.image('end_turn', game.global.ASSETS + 'botones/end_turn.png');
 
         // Vida
