@@ -227,7 +227,9 @@ var playState = {
 };
 
 function mostrarPanelTerminarJuego () {
-    alert("Función terminar juego no disponible");
+    if (confirm("¿Seguro que quieres salir del juego?") == true) {
+        game.state.start('menu');
+    }
 }
 
 function onClick() {
