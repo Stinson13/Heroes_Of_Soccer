@@ -29,6 +29,6 @@ Navegación por el menú secundario
 
 Al llegar a este menú encontraremos de nuevo tres opciones:
     
-    - Mazo aleatorio. Inicia una partida nueva con un mazo aleatorio.
-    - Define tu mazo. Nos llevará a una pantalla donde crear nuestro mazo con el que se jugará la partida (Función no disponible).
-    - Volver. Vuelve al menú principal.
+   - Mazo aleatorio. Inicia una partida nueva con un mazo aleatorio.
+   - Define tu mazo. Nos llevará a una pantalla donde crear nuestro mazo con el que se jugará la partida (Función no disponible).
+   - Volver. Vuelve al menú principal.
