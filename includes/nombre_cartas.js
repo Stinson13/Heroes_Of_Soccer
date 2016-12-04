@@ -1,7 +1,8 @@
 this.equipos = [
 	'real_madrid',
 	'atletico',
-	'barcelona'
+	'barcelona',
+    'leganes'
 ];
 
 /* 
@@ -11,7 +12,8 @@ this.equipos = [
 this.entrenadores = [
 	'zidane',
     'simeone',
-    'lenrique'
+    'lenrique',
+    'garitano'
 ];
 
 // Real Madrid
@@ -93,6 +95,33 @@ this.jugadores = [
                     'ter-stegen_pt_6',
                     'umtiti_df_6',
                     'vidal_df_4'
+                ],
+
+                //Leganes
+                [
+                	'brignoli_pt_3',
+                    'bustinza_df_2',
+                    'diaz_df_3',
+                    'dovale_mc_2',
+                    'guerrero_dl_3',
+                    'ibañez_mc_3',
+                    'insua_df_4',
+                    'kone_dl_2',
+                    'machis_dl_3',
+                    'mantovani_df_4',
+                    'marin_df_3',
+                    'martin_mc_3',
+                    'medjani_df_4',
+                    'neves_dl_3',
+                    'oramos_mc_4',
+                    'pires_mc_4',
+                    'rico_df_4',
+                    'rperez_mc_4',
+                    'sastre_mc_3',
+                    'serantes_pt_4',
+                    'szymanowski_mc_4',
+                    'timor_mc_4',
+                    'ulopez_mc_3'
                 ]];
 
 var i;
